@@ -1,0 +1,23 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "API &amp; Frontend Testing for Seanote Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha $(find api -name '*.js')"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felizz/Seanote-Automated-Tests.git"
+  },
+  "author": "kyle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felizz/Seanote-Automated-Tests/issues"
+  },
+  "homepage": "https://github.com/felizz/Seanote-Automated-Tests#readme",
+  "dependencies": {
+    "ajv": "^3.8.4",
+    "request": "^2.69.0"
+  }
+}
