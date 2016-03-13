@@ -2,7 +2,7 @@
  * Created by kyle on 11/3/16.
  */
 
-var COOKIE  = null;
+var COOKIE_SESSION  = null;
 var request = require("request");
 var Ajv = require('ajv');
 var ajv = Ajv(); // options can be passed, e.g. {allErrors: true}
@@ -23,6 +23,9 @@ var END_POINT = 'http://dev.seanote.com:3000';
 
 
 module.exports = {
+    clearCookie: function (){
+        COOKIE_SESSION = null;
+    },
 
     get: function (url, callback) {
         var options = { method: 'GET',
@@ -30,8 +33,14 @@ module.exports = {
             headers:
             {
                 'cache-control': 'no-cache',
-                'content-type': 'application/json' },
-            json: true };
+                'content-type': 'application/json'
+            },
+            json: true
+        };
+
+        if(COOKIE_SESSION){
+            options.headers['cookie'] = COOKIE_SESSION;
+        }
 
         request(options, function (error, response, body) {
             if(error){
@@ -55,11 +64,22 @@ module.exports = {
             headers:
             {
                 'cache-control': 'no-cache',
-                'content-type': 'application/json' },
+                'content-type': 'application/json'
+            },
             body: reqBody,
-            json: true };
+            json: true
+        };
+
+        if(COOKIE_SESSION){
+            options.headers['cookie'] = COOKIE_SESSION;
+        }
 
         request(options, function (error, response, body) {
+
+            if(response.headers["set-cookie"]){
+                COOKIE_SESSION = response.headers["set-cookie"];
+            }
+
             if(error){
                 console.log("Error during HTTP Request: " + JSON.stringify(error));
                 throw new Error(error);
