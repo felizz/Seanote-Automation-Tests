@@ -3,13 +3,13 @@
  */
 
 var expect = require('Chai').expect;
-var testUtils = require('../utils');
+var request = require('../lib/request');
 
 describe("Authentication - Login", function () {
 
     it("should return Success if user exists", function (done) {
-        testUtils.clearCookie();
-        testUtils.post('/v1/authentication/login',  { username: 'felizz', password: '123qwe' },
+        request.clearCookie();
+        request.post('/v1/authentication/login',  { username: 'felizz', password: '123qwe' },
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('REQUEST_SUCCESS');
                 console.log(JSON.stringify(data));
@@ -20,8 +20,8 @@ describe("Authentication - Login", function () {
     });
 
     it("should return failure if password is incorrect", function (done) {
-        testUtils.clearCookie();
-        testUtils.post('/v1/authentication/login',  { username: 'felizz', password: 'incorrect' },
+        request.clearCookie();
+        request.post('/v1/authentication/login',  { username: 'felizz', password: 'incorrect' },
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('AUTHENTICATION_ERROR');
                 console.log(JSON.stringify(data));
@@ -31,8 +31,8 @@ describe("Authentication - Login", function () {
     });
 
     it("should return failure if username does not exists", function (done) {
-        testUtils.clearCookie();
-        testUtils.post('/v1/authentication/login',  { username: 'felizz123', password: '123qwe' },
+        request.clearCookie();
+        request.post('/v1/authentication/login',  { username: 'felizz123', password: '123qwe' },
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('DOES_NOT_EXIST');
                 console.log(JSON.stringify(data));
@@ -45,7 +45,7 @@ describe("Authentication - Login", function () {
 describe("Authentication - Logout", function () {
 
     it("should return Success ", function (done) {
-        testUtils.get('/v1/authentication/logout',
+        request.get('/v1/authentication/logout',
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('REQUEST_SUCCESS');
                 console.log(JSON.stringify(data));
