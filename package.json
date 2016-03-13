@@ -19,6 +19,7 @@
   "dependencies": {
     "ajv": "^3.8.4",
     "chai": "^3.5.0",
+    "node-uuid": "^1.4.7",
     "request": "^2.69.0"
   }
 }
