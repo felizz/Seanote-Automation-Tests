@@ -6,7 +6,6 @@ var COOKIE  = null;
 var request = require("request");
 var Ajv = require('ajv');
 var ajv = Ajv(); // options can be passed, e.g. {allErrors: true}
-var expect = require('Chai').expect;
 
 
 var schema = {
@@ -15,18 +14,19 @@ var schema = {
             "type": "string"
         },
         "msg": {
-            "type": "object"
         }
     },
     "required": [ "code", "msg"]
 };
+
+var END_POINT = 'http://dev.seanote.com:3000';
 
 
 module.exports = {
 
     get: function (url, callback) {
         var options = { method: 'GET',
-            url: url,
+            url: END_POINT + url,
             headers:
             {
                 'cache-control': 'no-cache',
@@ -34,7 +34,10 @@ module.exports = {
             json: true };
 
         request(options, function (error, response, body) {
-            expect(error).to.not.exist;
+            if(error){
+                console.log("Error during HTTP Request: " + JSON.stringify(error));
+                throw new Error(error);
+            }
             var validResponse = ajv.validate(schema, body);
             if(!validResponse){
                 console.log("Invalid Response: " + JSON.stringify(body));
@@ -48,7 +51,7 @@ module.exports = {
     post : function (url, reqBody, callback){
 
         var options = { method: 'POST',
-            url: url,
+            url: END_POINT + url,
             headers:
             {
                 'cache-control': 'no-cache',
@@ -57,7 +60,10 @@ module.exports = {
             json: true };
 
         request(options, function (error, response, body) {
-            expect(error).to.not.exist;
+            if(error){
+                console.log("Error during HTTP Request: " + JSON.stringify(error));
+                throw new Error(error);
+            }
             var validResponse = ajv.validate(schema, body);
             if(!validResponse){
                 console.log("Invalid Response: " + JSON.stringify(body));
