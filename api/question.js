@@ -42,6 +42,35 @@ describe("Question - Create Question", function () {
     });
 });
 
+describe("Question - Share Question", function () {
+
+    it("should enable logged in user to share question of other user ", function (done) {
+
+        testUtils.signupRandomUserThenLogIn(function loginCallback(user){
+
+            createQuestion(function createQuestionCallback(question){
+                //Sign up with another user to share
+                request.clearCookie();
+                testUtils.signupRandomUserThenLogIn(function callback(user){
+                    var shareData = {
+                        body: "This is amazing!",
+                        shared_from: question.id
+                    };
+                    request.post('/v1/question/share', shareData,
+                        function reqCallback(code, data){
+                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                            expect(data.shared_from).to.equal(shareData.shared_from);
+
+                            logger.info(JSON.stringify(data));
+                            done();
+                        }
+                    );
+                });
+            });
+        });
+    });
+});
+
 describe("Question - Get Question", function () {
 
     it("should enable logged in to get question ", function (done) {
