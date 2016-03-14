@@ -34,3 +34,72 @@
 {"level":"info","message":"Created bot : bot_bffcba60e99811e595a655969f702100","timestamp":"2016-03-14T03:56:37.587Z"}
 {"level":"info","message":"Loged In : bot_bffcba60e99811e595a655969f702100","timestamp":"2016-03-14T03:56:37.759Z"}
 {"level":"info","message":"{\"id\":\"24378849189954273\",\"user_name\":\"bot_bffcba60e99811e595a655969f702100\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_bffcba60e99811e595a655969f702100@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T03:56:37.935Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:02:57.561Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T04:02:58.779Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T04:02:59.013Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:02:59.205Z"}
+{"level":"info","message":"Username created - bot_a3cd3170e99911e5964765fe9d2d5df6","timestamp":"2016-03-14T04:02:59.208Z"}
+{"level":"info","message":"{\"id\":\"24378849189954275\"}","timestamp":"2016-03-14T04:03:00.432Z"}
+{"level":"info","message":"Username created - bot_a4884410e99911e5964765fe9d2d5df6","timestamp":"2016-03-14T04:03:00.433Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T04:03:00.654Z"}
+{"level":"info","message":"Created bot : bot_a5ba8280e99911e5964765fe9d2d5df6","timestamp":"2016-03-14T04:03:03.634Z"}
+{"level":"info","message":"Loged In : bot_a5ba8280e99911e5964765fe9d2d5df6","timestamp":"2016-03-14T04:03:04.223Z"}
+{"level":"info","message":"{\"id\":\"24378849189954277\",\"user_name\":\"bot_a5ba8280e99911e5964765fe9d2d5df6\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_a5ba8280e99911e5964765fe9d2d5df6@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T04:03:04.425Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T04:03:45.801Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:03:46.150Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T04:03:47.007Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:03:47.705Z"}
+{"level":"info","message":"Username created - bot_c0b5b4b0e99911e5889183091a5d30ab","timestamp":"2016-03-14T04:03:47.708Z"}
+{"level":"info","message":"Username created - bot_c1e84140e99911e5889183091a5d30ab","timestamp":"2016-03-14T04:03:49.716Z"}
+{"level":"info","message":"{\"id\":\"24378849189954281\"}","timestamp":"2016-03-14T04:03:49.939Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T04:03:49.940Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T04:03:50.155Z"}
+{"level":"info","message":"Created bot : bot_c22b64c0e99911e5889183091a5d30ab","timestamp":"2016-03-14T04:03:52.638Z"}
+{"level":"info","message":"Created bot : bot_c35cdfe0e99911e5889183091a5d30ab","timestamp":"2016-03-14T04:03:53.871Z"}
+{"level":"info","message":"Loged In : bot_c22b64c0e99911e5889183091a5d30ab","timestamp":"2016-03-14T04:03:53.882Z"}
+{"level":"info","message":"Loged In : bot_c35cdfe0e99911e5889183091a5d30ab","timestamp":"2016-03-14T04:03:54.073Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:04:52.815Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T04:04:52.979Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T04:04:53.122Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:04:53.271Z"}
+{"level":"info","message":"Username created - bot_e7ca6fa0e99911e5b1d46bc232e450e0","timestamp":"2016-03-14T04:04:53.274Z"}
+{"level":"info","message":"{\"id\":\"24378849189954287\"}","timestamp":"2016-03-14T04:04:53.431Z"}
+{"level":"info","message":"Username created - bot_e7e28b80e99911e5b1d46bc232e450e0","timestamp":"2016-03-14T04:04:53.432Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T04:04:53.583Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T04:04:53.740Z"}
+{"level":"info","message":"Created bot : bot_e811b1d0e99911e5b1d46bc232e450e0","timestamp":"2016-03-14T04:04:53.904Z"}
+{"level":"info","message":"Loged In : bot_e811b1d0e99911e5b1d46bc232e450e0","timestamp":"2016-03-14T04:04:54.055Z"}
+{"level":"info","message":"{\"id\":\"24378849189954289\",\"user_name\":\"bot_e811b1d0e99911e5b1d46bc232e450e0\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_e811b1d0e99911e5b1d46bc232e450e0@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T04:04:54.193Z"}
+{"level":"info","message":"Created bot : bot_e856d120e99911e5b1d46bc232e450e0","timestamp":"2016-03-14T04:04:54.342Z"}
+{"level":"info","message":"Loged In : bot_e856d120e99911e5b1d46bc232e450e0","timestamp":"2016-03-14T04:04:54.493Z"}
+{"level":"info","message":"{\"id\":\"24381785672515584\",\"user_name\":\"felizz\",\"birthday\":null,\"location\":\"Cau Giay, Hanoi\",\"work\":\"Technology\",\"email\":\"contact@felizz.com\",\"gender\":\"0\",\"first_name\":\"Felizz\",\"last_name\":\"Team\",\"avatar\":null}","timestamp":"2016-03-14T04:04:54.606Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:05:09.294Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T04:05:09.476Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T04:05:09.613Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:05:12.644Z"}
+{"level":"info","message":"Username created - bot_f3565e60e99911e5a3a8bbf17ddaee2a","timestamp":"2016-03-14T04:05:12.647Z"}
+{"level":"info","message":"{\"id\":\"24378849189954293\"}","timestamp":"2016-03-14T04:05:14.158Z"}
+{"level":"info","message":"Username created - bot_f43d3bf0e99911e5a3a8bbf17ddaee2a","timestamp":"2016-03-14T04:05:14.159Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T04:05:14.271Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T04:05:14.442Z"}
+{"level":"info","message":"Created bot : bot_f468b8c0e99911e5a3a8bbf17ddaee2a","timestamp":"2016-03-14T04:05:14.591Z"}
+{"level":"info","message":"Loged In : bot_f468b8c0e99911e5a3a8bbf17ddaee2a","timestamp":"2016-03-14T04:05:14.705Z"}
+{"level":"info","message":"{\"id\":\"24378849189954295\",\"user_name\":\"bot_f468b8c0e99911e5a3a8bbf17ddaee2a\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_f468b8c0e99911e5a3a8bbf17ddaee2a@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T04:05:14.850Z"}
+{"level":"info","message":"Created bot : bot_f4a6d330e99911e5a3a8bbf17ddaee2a","timestamp":"2016-03-14T04:05:15.006Z"}
+{"level":"info","message":"Loged In : bot_f4a6d330e99911e5a3a8bbf17ddaee2a","timestamp":"2016-03-14T04:05:15.140Z"}
+{"level":"info","message":"{\"id\":\"24381785672515584\",\"user_name\":\"felizz\",\"birthday\":null,\"location\":\"Cau Giay, Hanoi\",\"work\":\"Technology\",\"email\":\"contact@felizz.com\",\"gender\":\"0\",\"first_name\":\"Felizz\",\"last_name\":\"Team\",\"avatar\":null}","timestamp":"2016-03-14T04:05:15.270Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:05:32.292Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T04:05:32.470Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T04:05:32.592Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T04:05:32.723Z"}
+{"level":"info","message":"Username created - bot_ff4e5560e99911e5939bd96eb8b8d4d9","timestamp":"2016-03-14T04:05:32.726Z"}
+{"level":"info","message":"{\"id\":\"24378849189954299\"}","timestamp":"2016-03-14T04:05:32.875Z"}
+{"level":"info","message":"Username created - bot_ff6538c0e99911e5939bd96eb8b8d4d9","timestamp":"2016-03-14T04:05:32.876Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T04:05:33.019Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T04:05:33.158Z"}
+{"level":"info","message":"Created bot : bot_ff906770e99911e5939bd96eb8b8d4d9","timestamp":"2016-03-14T04:05:33.330Z"}
+{"level":"info","message":"Loged In : bot_ff906770e99911e5939bd96eb8b8d4d9","timestamp":"2016-03-14T04:05:33.479Z"}
+{"level":"info","message":"{\"id\":\"24378849189954301\",\"user_name\":\"bot_ff906770e99911e5939bd96eb8b8d4d9\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_ff906770e99911e5939bd96eb8b8d4d9@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T04:05:33.622Z"}
+{"level":"info","message":"Created bot : bot_ffd70d60e99911e5939bd96eb8b8d4d9","timestamp":"2016-03-14T04:05:33.764Z"}
+{"level":"info","message":"Loged In : bot_ffd70d60e99911e5939bd96eb8b8d4d9","timestamp":"2016-03-14T04:05:33.912Z"}
+{"level":"info","message":"{\"id\":\"24381785672515584\",\"user_name\":\"felizz\",\"birthday\":null,\"location\":\"Cau Giay, Hanoi\",\"work\":\"Technology\",\"email\":\"contact@felizz.com\",\"gender\":\"0\",\"first_name\":\"Felizz\",\"last_name\":\"Team\",\"avatar\":null}","timestamp":"2016-03-14T04:05:34.052Z"}

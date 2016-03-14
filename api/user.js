@@ -76,4 +76,22 @@ describe("User - GetBasicInfo", function () {
             );
         });
     });
+
+
+    it(" allow user to get basic info of other users ", function (done) {
+
+        var FELIZZ_USER_ID = '24381785672515584';
+
+        testUtils.signupRandomUserThenLogIn(function loginCallback(user){
+
+            request.get('/v1/user/'+ FELIZZ_USER_ID + '/info',
+                function reqCallback(code, data){
+                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    logger.info(JSON.stringify(data));
+                    done();
+                }
+            );
+        });
+    });
+
 });
