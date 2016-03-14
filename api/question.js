@@ -267,7 +267,7 @@ describe("Question - Get Comments By Question", function () {
                         request.get('/v1/question/' + question.id + '/comment/all',
                             function reqCallback(code, data){
                                 expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                                expect(data.length).to.equal(2);
+                                expect(data.length).to.equal(1);
                                 logger.info(JSON.stringify(data));
                                 done();
                             }
