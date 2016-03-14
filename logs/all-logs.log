@@ -1,0 +1,36 @@
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T03:50:53.062Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T03:50:53.213Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T03:50:53.383Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T03:50:53.522Z"}
+{"level":"info","message":"Username created - bot_f342c140e99711e5b79387ac2b08765d","timestamp":"2016-03-14T03:50:53.525Z"}
+{"level":"info","message":"{\"id\":\"24378849189954263\"}","timestamp":"2016-03-14T03:50:53.678Z"}
+{"level":"info","message":"Username created - bot_f35a67f0e99711e5b79387ac2b08765d","timestamp":"2016-03-14T03:50:53.679Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T03:50:53.814Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T03:50:53.973Z"}
+{"level":"info","message":"Created bot : bot_f3879270e99711e5b79387ac2b08765d","timestamp":"2016-03-14T03:50:54.122Z"}
+{"level":"info","message":"Loged In : bot_f3879270e99711e5b79387ac2b08765d","timestamp":"2016-03-14T03:50:54.283Z"}
+{"level":"info","message":"{\"id\":\"24378849189954265\",\"user_name\":\"bot_f3879270e99711e5b79387ac2b08765d\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_f3879270e99711e5b79387ac2b08765d@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T03:50:54.439Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T03:51:13.022Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T03:51:13.151Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T03:51:13.291Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T03:51:13.435Z"}
+{"level":"info","message":"Username created - bot_ff2163e0e99711e585d849ba8be825e7","timestamp":"2016-03-14T03:51:13.439Z"}
+{"level":"info","message":"{\"id\":\"24378849189954267\"}","timestamp":"2016-03-14T03:51:13.562Z"}
+{"level":"info","message":"Username created - bot_ff3476b0e99711e585d849ba8be825e7","timestamp":"2016-03-14T03:51:13.564Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T03:51:13.726Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T03:51:13.857Z"}
+{"level":"info","message":"Created bot : bot_ff61a130e99711e585d849ba8be825e7","timestamp":"2016-03-14T03:51:14.015Z"}
+{"level":"info","message":"Loged In : bot_ff61a130e99711e585d849ba8be825e7","timestamp":"2016-03-14T03:51:14.143Z"}
+{"level":"info","message":"{\"id\":\"24378849189954269\",\"user_name\":\"bot_ff61a130e99711e585d849ba8be825e7\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_ff61a130e99711e585d849ba8be825e7@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T03:51:14.272Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T03:56:35.646Z"}
+{"level":"info","message":"\"Authentication error\"","timestamp":"2016-03-14T03:56:35.904Z"}
+{"level":"info","message":"\"Object is not exist\"","timestamp":"2016-03-14T03:56:36.106Z"}
+{"level":"info","message":"{\"user_id\":\"24381785672515584\"}","timestamp":"2016-03-14T03:56:36.305Z"}
+{"level":"info","message":"Username created - bot_bf934a30e99811e595a655969f702100","timestamp":"2016-03-14T03:56:36.308Z"}
+{"level":"info","message":"{\"id\":\"24378849189954271\"}","timestamp":"2016-03-14T03:56:36.528Z"}
+{"level":"info","message":"Username created - bot_bfb52a10e99811e595a655969f702100","timestamp":"2016-03-14T03:56:36.529Z"}
+{"level":"info","message":"Loged In : felizz","timestamp":"2016-03-14T03:56:36.781Z"}
+{"level":"info","message":"\"Unauthorized Operation\"","timestamp":"2016-03-14T03:56:36.996Z"}
+{"level":"info","message":"Created bot : bot_bffcba60e99811e595a655969f702100","timestamp":"2016-03-14T03:56:37.587Z"}
+{"level":"info","message":"Loged In : bot_bffcba60e99811e595a655969f702100","timestamp":"2016-03-14T03:56:37.759Z"}
+{"level":"info","message":"{\"id\":\"24378849189954273\",\"user_name\":\"bot_bffcba60e99811e595a655969f702100\",\"birthday\":null,\"location\":null,\"work\":null,\"email\":\"bot_bffcba60e99811e595a655969f702100@felizz.com\",\"gender\":null,\"first_name\":\"Test\",\"last_name\":\"Bot\",\"avatar\":null}","timestamp":"2016-03-14T03:56:37.935Z"}

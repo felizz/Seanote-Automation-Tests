@@ -6,6 +6,7 @@ var expect = require('Chai').expect;
 var request = require('../lib/request');
 var testUtils = require('../lib/utils');
 var logger = require('../lib/logger');
+var returnCode = require('../lib/return-code');
 
 
 describe("User - Singup", function () {
@@ -30,8 +31,8 @@ describe("User - Singup", function () {
                 password: "123qwe",
                 confirm_password: "123qwe"
             },
-            function reqCallback(returnCode, data) {
-                expect(returnCode).to.equal('REQUEST_SUCCESS');
+            function reqCallback(code, data) {
+                expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                 logger.info(JSON.stringify(data));
                 done();
             }
@@ -50,8 +51,8 @@ describe("User - Singup", function () {
                     password: "123qwe",
                     confirm_password: "123qwe"
                 },
-                function reqCallback(returnCode, data) {
-                    expect(returnCode).to.equal('UNAUTHORIZED');
+                function reqCallback(code, data) {
+                    expect(code).to.equal(returnCode.UNAUTHORIZED.code);
                     logger.info(JSON.stringify(data));
                     done();
                 }
@@ -67,8 +68,8 @@ describe("User - GetBasicInfo", function () {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
 
             request.get('/v1/user/'+ user.id + '/info',
-                function reqCallback(returnCode, data){
-                    expect(returnCode).to.equal('REQUEST_SUCCESS');
+                function reqCallback(code, data){
+                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                     logger.info(JSON.stringify(data));
                     done();
                 }
