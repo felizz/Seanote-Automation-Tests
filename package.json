@@ -4,7 +4,7 @@
   "description": "API &amp; Frontend Testing for Seanote Project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000 $(find api -name '*.js')"
+    "test": "mocha --timeout 60000 $(find api -name '*.js')"
   },
   "repository": {
     "type": "git",
