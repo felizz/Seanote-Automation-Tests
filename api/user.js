@@ -2,7 +2,7 @@
  * Created by kyle on 11/3/16.
  */
 
-var expect = require('Chai').expect;
+var expect = require('chai').expect;
 var request = require('../lib/request');
 var testUtils = require('../lib/utils');
 var logger = require('../lib/logger');
