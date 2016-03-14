@@ -5,18 +5,16 @@
 var expect = require('Chai').expect;
 var request = require('../lib/request');
 var testUtils = require('../lib/utils');
+var logger = require('../lib/logger');
 
 
 describe("User - Singup", function () {
 
     beforeEach(function() {
-        function generateUIDNotMoreThan1million() {
-            var time = Date.now();
-            return ("0000" + (Math.random()*time*Math.pow(36,4) << 0).toString(36)).slice(-4)
-        }
-
-        username = "bot_" + generateUIDNotMoreThan1million();
-        console.log("Username created - " + username);
+        var uuid = require('node-uuid');
+        var randomString = uuid.v1().replace(/-/g, "");
+        username = "bot_"+ randomString;
+        logger.info("Username created - " + username);
     });
 
 
@@ -34,7 +32,7 @@ describe("User - Singup", function () {
             },
             function reqCallback(returnCode, data) {
                 expect(returnCode).to.equal('REQUEST_SUCCESS');
-                console.log(JSON.stringify(data));
+                logger.info(JSON.stringify(data));
                 done();
             }
         );
@@ -54,7 +52,7 @@ describe("User - Singup", function () {
                 },
                 function reqCallback(returnCode, data) {
                     expect(returnCode).to.equal('UNAUTHORIZED');
-                    console.log(JSON.stringify(data));
+                    logger.info(JSON.stringify(data));
                     done();
                 }
             );
@@ -71,7 +69,7 @@ describe("User - GetBasicInfo", function () {
             request.get('/v1/user/'+ user.id + '/info',
                 function reqCallback(returnCode, data){
                     expect(returnCode).to.equal('REQUEST_SUCCESS');
-                    console.log(JSON.stringify(data));
+                    logger.info(JSON.stringify(data));
                     done();
                 }
             );

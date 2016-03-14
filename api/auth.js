@@ -4,6 +4,7 @@
 
 var expect = require('Chai').expect;
 var request = require('../lib/request');
+var logger = require('../lib/logger');
 
 describe("Authentication - Login", function () {
 
@@ -12,7 +13,7 @@ describe("Authentication - Login", function () {
         request.post('/v1/authentication/login',  { username: 'felizz', password: '123qwe' },
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('REQUEST_SUCCESS');
-                console.log(JSON.stringify(data));
+                logger.info(JSON.stringify(data));
                 expect(data.user_id).to.be.a('string');
                 done();
             }
@@ -24,7 +25,7 @@ describe("Authentication - Login", function () {
         request.post('/v1/authentication/login',  { username: 'felizz', password: 'incorrect' },
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('AUTHENTICATION_ERROR');
-                console.log(JSON.stringify(data));
+                logger.info(JSON.stringify(data));
                 done();
             }
         );
@@ -35,7 +36,7 @@ describe("Authentication - Login", function () {
         request.post('/v1/authentication/login',  { username: 'felizz123', password: '123qwe' },
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('DOES_NOT_EXIST');
-                console.log(JSON.stringify(data));
+                logger.info(JSON.stringify(data));
                 done();
             }
         );
@@ -48,7 +49,7 @@ describe("Authentication - Logout", function () {
         request.get('/v1/authentication/logout',
             function reqCallback(returnCode, data){
                 expect(returnCode).to.equal('REQUEST_SUCCESS');
-                console.log(JSON.stringify(data));
+                logger.info(JSON.stringify(data));
                 expect(data.user_id).to.be.a('string');
                 done();
             }
