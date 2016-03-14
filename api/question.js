@@ -69,7 +69,7 @@ describe("Question - Get Question", function () {
                     request.get('/v1/question/' + question.id,
                         function reqCallback(code, data){
                             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                            expect(data.body).to.equal(reqData.body);
+                            expect(data.body).to.equal(questionData.body);
                             logger.info(JSON.stringify(data));
                             done();
                         }
