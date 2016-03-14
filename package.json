@@ -20,9 +20,7 @@
     "ajv": "^3.8.4",
     "node-uuid": "^1.4.7",
     "request": "^2.69.0",
+    "chai": "^3.5.0",
     "winston": "^2.2.0"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0"
   }
 }
