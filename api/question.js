@@ -53,13 +53,15 @@ describe("Question - Share Question", function () {
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
                     var shareData = {
-                        body: "This is amazing!",
-                        shared_from: question.id
+                        post: {
+                            body: "This is amazing!",
+                            shared_from: question.id
+                        }
                     };
                     request.post('/v1/question/share', shareData,
                         function reqCallback(code, data){
                             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                            expect(data.shared_from).to.equal(shareData.shared_from);
+                            expect(data.shared_from).to.equal(shareData.post.shared_from);
 
                             logger.info(JSON.stringify(data));
                             done();
