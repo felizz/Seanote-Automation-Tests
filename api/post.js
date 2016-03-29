@@ -8,16 +8,18 @@ var request = require('../lib/request');
 var logger = require('../lib/logger');
 var returnCode = require('../lib/return-code');
 var testUtils = require('../lib/utils');
+var POST_TYPE = require('../lib/CONSTANTS.js').POST_TYPE;
 
-var questionData = {
-    body: "Seanote Rule the world!"
+var postData = {
+    body: "Seanote Rule the world!",
+    type: POST_TYPE.QUESTION
 };
 var commentData = {
     body: "Yeah, we rule the world!"
 };
 
-var createQuestion = function (callback) {
-    request.post('/v1/question/create', questionData,
+var createPost = function (callback) {
+    request.post('/v1/post/create', postData,
         function reqCallback(code, data){
             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
             callback(data);
@@ -26,12 +28,11 @@ var createQuestion = function (callback) {
 };
 
 
-describe("Question - Create Question", function () {
+describe("Post - Create Post", function () {
 
-    it("should enable logged in user to create question ", function (done) {
-
+    it("should enable logged in user to create post ", function (done) {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            request.post('/v1/question/create', questionData,
+            request.post('/v1/post/create', postData,
                 function reqCallback(code, data){
                     expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                     logger.info(JSON.stringify(data));
@@ -42,26 +43,27 @@ describe("Question - Create Question", function () {
     });
 });
 
-describe("Question - Share Question", function () {
+describe("Post - Share Post", function () {
 
-    it("should enable logged in user to share question of other user ", function (done) {
+    it("should enable logged in user to share post of other user ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
 
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(post){
                 //Sign up with another user to share
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
                     var shareData = {
                         post: {
                             body: "This is amazing!",
-                            shared_from: question.id
+                            type: POST_TYPE.SHARING,
+                            shared_object_id: post.id
                         }
                     };
-                    request.post('/v1/question/share', shareData,
+                    request.post('/v1/post/create', shareData.post,
                         function reqCallback(code, data){
                             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                            expect(data.shared_from).to.equal(shareData.post.shared_from);
+                            //expect(data.shared_from).to.equal(shareData.post.shared_from);
 
                             logger.info(JSON.stringify(data));
                             done();
@@ -73,16 +75,16 @@ describe("Question - Share Question", function () {
     });
 });
 
-describe("Question - Get Question", function () {
+describe("Post - Get Post", function () {
 
-    it("should enable logged in to get question ", function (done) {
+    it("should enable logged in to get post ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
-                request.get('/v1/question/' + question.id,
+            createPost(function createPostCallback(act){
+                request.get('/v1/post/' + act.object.id,
                     function reqCallback(code, data){
                         expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                        expect(data.body).to.equal(questionData.body);
+                        expect(data.body).to.equal(postData.body);
                         logger.info(JSON.stringify(data));
                         done();
                     }
@@ -91,16 +93,16 @@ describe("Question - Get Question", function () {
         });
     });
 
-    it("should enable other user to get question ", function (done) {
+    it("should enable other user to get post ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
-                    request.get('/v1/question/' + question.id,
+                    request.get('/v1/post/' + act.object.id,
                         function reqCallback(code, data){
                             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                            expect(data.body).to.equal(questionData.body);
+                            expect(data.body).to.equal(postData.body);
                             logger.info(JSON.stringify(data));
                             done();
                         }
@@ -111,24 +113,24 @@ describe("Question - Get Question", function () {
     });
 });
 
-describe("Question - Edit Question", function () {
-    var updateQuestionData = {
-        body: "Updated Question"
+describe("Post - Edit Post", function () {
+    var updatePostData = {
+        body: "Updated Post"
     };
-    it("should enable logged in to edit his question ", function (done) {
+    it("should enable logged in to edit his post ", function (done) {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
 
-                request.post('/v1/question/' + question.id + '/update', updateQuestionData,
+                request.post('/v1/post/' + act.object.id + '/update', updatePostData,
                     function reqCallback(code, data){
                         expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                         logger.info(JSON.stringify(data));
 
-                        //Verify if the question is updated
-                        request.get('/v1/question/' + question.id,
+                        //Verify if the post is updated
+                        request.get('/v1/post/' + act.object.id,
                             function reqCallback(code, data){
                                 expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                                expect(data.body).to.equal(updateQuestionData.body);
+                                expect(data.body).to.equal(updatePostData.body);
                                 done();
                             }
                         );
@@ -138,25 +140,17 @@ describe("Question - Edit Question", function () {
         });
     });
 
-    it("should not allow an user to change other people question ", function (done) {
+    it("should not allow an user to change other people post ", function (done) {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
 
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
-                    request.post('/v1/question/' + question.id + '/update', updateQuestionData,
+                    request.post('/v1/post/' + act.object.id + '/update', updatePostData,
                         function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                            expect(code).to.not.equal(returnCode.REQUEST_SUCCESS.code);
                             logger.info(JSON.stringify(data));
-
-                            //Verify if the question is updated
-                            request.get('/v1/question/' + question.id,
-                                function reqCallback(code, data){
-                                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                                    expect(data.body).to.equal(questionData.body);
-                                    done();
-                                }
-                            );
+                            done();
                         }
                     );
                 });
@@ -166,16 +160,16 @@ describe("Question - Edit Question", function () {
 });
 
 
-describe("Question - Get All Question By User", function () {
+describe("Post - Get All Question By User", function () {
 
     it("should enable logged in user to get all question ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
-                request.get('/v1/question/all',
+            createPost(function createPostCallback(act){
+                request.get('/v1/post/all?type=0',
                     function reqCallback(code, data){
                         expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                        expect(data.length).to.equal(1); // This user have only one question, which was just created
+                        expect(data.length).to.equal(1); // This user have only one post, which was just created
                         logger.info(JSON.stringify(data));
                         done();
                     }
@@ -186,22 +180,22 @@ describe("Question - Get All Question By User", function () {
 });
 
 
-describe("Question - Voting", function () {
+describe("Post - Voting", function () {
 
-    it("should enable logged in user to upvote his question and clear his vote ", function (done) {
+    it("should enable logged in user to upvote his post and clear his vote ", function (done) {
 
         var voteData = {
             action: "upvote"
         };
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
-                request.post('/v1/question/' + question.id + '/vote', voteData,
+            createPost(function createPostCallback(act){
+                request.post('/v1/post/' + act.object.id + '/vote', voteData,
                     function reqCallback(code, data){
                         expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                         logger.info(JSON.stringify(data));
 
                         //Clearing Vote
-                        request.post('/v1/question/' + question.id + '/vote', {
+                        request.post('/v1/post/' + act.object.id + '/vote', {
                             action: "clear"
                         },
                             function reqCallback(code, data){
@@ -217,16 +211,16 @@ describe("Question - Voting", function () {
     });
 
 
-    it("should enable logged in user to downvote other user's question ", function (done) {
+    it("should enable logged in user to downvote other user's post ", function (done) {
 
         var voteData = {
             action: "downvote"
         };
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(newUser){
-                    request.post('/v1/question/' + question.id + '/vote', voteData,
+                    request.post('/v1/post/' + act.object.id + '/vote', voteData,
                         function reqCallback(code, data){
                             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                             logger.info(JSON.stringify(data));
@@ -241,16 +235,16 @@ describe("Question - Voting", function () {
 
 
 
-describe("Question - Create Comment", function () {
+describe("Post - Create Comment", function () {
 
-    it("should enable logged in user to create comment on his question ", function (done) {
+    it("should enable logged in user to create comment on his post ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
                 var commentData = {
                     body: "Yeah, we rule the world!"
                 };
-                request.post('/v1/question/' + question.id + '/comment/create', commentData,
+                request.post('/v1/post/' + act.object.id + '/comment/create', commentData,
                     function reqCallback(code, data){
                         expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                         expect(data.body).to.equal(commentData.body);
@@ -263,14 +257,14 @@ describe("Question - Create Comment", function () {
     });
 
 
-    it("should enable logged in user to create comment on other person question ", function (done) {
+    it("should enable logged in user to create comment on other person post ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
 
-                    request.post('/v1/question/' + question.id + '/comment/create', commentData,
+                    request.post('/v1/post/' + act.object.id + '/comment/create', commentData,
                         function reqCallback(code, data){
                             expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                             expect(data.body).to.equal(commentData.body);
@@ -285,17 +279,17 @@ describe("Question - Create Comment", function () {
 });
 
 
-describe("Question - Get Comments By Question", function () {
+describe("Post - Get Comments By Post", function () {
 
-    it("should enable logged in user to get comment on his question ", function (done) {
+    it("should enable logged in user to get comment on his post ", function (done) {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
-            createQuestion(function createQuestionCallback(question){
+            createPost(function createPostCallback(act){
                 //Create Comment
-                request.post('/v1/question/' + question.id + '/comment/create', commentData,
+                request.post('/v1/post/' + act.object.id + '/comment/create', commentData,
                     function reqCallback(code, data){
                         expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
-                        request.get('/v1/question/' + question.id + '/comment/all',
+                        request.get('/v1/post/' + act.object.id + '/comment/all',
                             function reqCallback(code, data){
                                 expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                                 expect(data.length).to.equal(1);
