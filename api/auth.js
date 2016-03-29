@@ -51,7 +51,6 @@ describe("Authentication - Logout", function () {
             function reqCallback(code, data){
                 expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
                 logger.info(JSON.stringify(data));
-                expect(data.user_id).to.be.a('string');
                 done();
             }
         );
