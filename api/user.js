@@ -6,7 +6,7 @@ var expect = require('chai').expect;
 var request = require('../lib/request');
 var testUtils = require('../lib/utils');
 var logger = require('../lib/logger');
-var returnCode = require('../lib/return-code');
+var apiErrors = require('../lib/api-errors');
 
 
 describe("User - Singup", function () {
@@ -31,8 +31,8 @@ describe("User - Singup", function () {
                 password: "123qwe",
                 confirm_password: "123qwe"
             },
-            function reqCallback(code, data) {
-                expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+            function reqCallback(err, data) {
+                expect(err).to.be.a('null');
                 logger.info(JSON.stringify(data));
                 done();
             }
@@ -51,8 +51,9 @@ describe("User - Singup", function () {
                     password: "123qwe",
                     confirm_password: "123qwe"
                 },
-                function reqCallback(code, data) {
-                    expect(code).to.equal(returnCode.UNAUTHORIZED.code);
+                function reqCallback(err, data) {
+
+                    expect(err.error_name).to.equal(apiErrors.INSUFFICIENT_PRIVILEGES.new().error_name);
                     logger.info(JSON.stringify(data));
                     done();
                 }
@@ -68,8 +69,8 @@ describe("User - GetBasicInfo", function () {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
 
             request.get('/v1/user/'+ user.id + '/info',
-                function reqCallback(code, data){
-                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                function reqCallback(err, data){
+                    expect(err).to.be.a('null');
                     logger.info(JSON.stringify(data));
                     done();
                 }
@@ -85,8 +86,8 @@ describe("User - GetBasicInfo", function () {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
 
             request.get('/v1/user/'+ FELIZZ_USER_ID + '/info',
-                function reqCallback(code, data){
-                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                function reqCallback(err, data){
+                    expect(err).to.be.a('null');
                     logger.info(JSON.stringify(data));
                     done();
                 }
@@ -113,14 +114,14 @@ describe("User - UpdateUserInfo", function () {
             };
 
             request.post('/v1/user/'+ user.id + '/info/update', reqData,
-                function reqCallback(code, data){
-                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                function reqCallback(err, data){
+                    expect(err).to.be.a('null');
                     logger.info(JSON.stringify(data));
 
                     //Assess if user data is updated
                     request.get('/v1/user/'+ user.id + '/info',
-                        function reqCallback(code, userData){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, userData){
+                            expect(err).to.be.a('null');
                             logger.info(JSON.stringify(userData));
                             expect(userData.first_name).to.equal(reqData.first_name);
                             expect(userData.gender).to.equal(reqData.gender);
