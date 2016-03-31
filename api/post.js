@@ -6,7 +6,7 @@
 var expect = require('chai').expect;
 var request = require('../lib/request');
 var logger = require('../lib/logger');
-var returnCode = require('../lib/return-code');
+var apiErrors = require('../lib/api-errors');
 var testUtils = require('../lib/utils');
 var POST_TYPE = require('../lib/CONSTANTS.js').POST_TYPE;
 
@@ -147,8 +147,8 @@ describe("Post - Edit Post", function () {
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
                     request.post('/v1/post/' + act.object.id + '/update', updatePostData,
-                        function reqCallback(code, data){
-                            expect(code).to.not.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err.error_name).to.equal(apiErrors.INTERNAL_SERVER_ERROR.new().error_name);
                             logger.info(JSON.stringify(data));
                             done();
                         }
