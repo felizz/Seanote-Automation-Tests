@@ -5,7 +5,6 @@
 var expect = require('chai').expect;
 var request = require('../lib/request');
 var logger = require('../lib/logger');
-var returnCode = require('../lib/return-code');
 var testUtils = require('../lib/utils');
 var fixture = require('../lib/fixture');
 var CONSTANTS = require('../lib/CONSTANTS');
@@ -23,14 +22,14 @@ describe("Relation - Follow Act", function () {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             request.post('/v1/relation/follow/act', followData,
-                function reqCallback(code, data){
-                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                function reqCallback(err, data){
+                    expect(err).to.be.a('null');
                     logger.info(JSON.stringify(data));
 
                     followData.action = CONSTANTS.FOLLOW_ACTION.UNFOLLOWING;
                     request.post('/v1/relation/follow/act', followData,
-                        function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err).to.be.a('null');
                             logger.info(JSON.stringify(data));
                             done();
                         }
@@ -53,13 +52,13 @@ describe("Relation - Following", function () {
 
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             request.post('/v1/relation/follow/act', followData,
-                function reqCallback(code, data){
-                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                function reqCallback(err, data){
+                    expect(err).to.be.a('null');
                     logger.info(JSON.stringify(data));
 
                     request.get('/v1/relation/follow/following/all?type=' + CONSTANTS.FOLLOW_TYPE.USER_FOLLOW_USER,
-                        function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err).to.be.a('null');
                             expect(data.length).to.equal(1); // Felizz is the only user that this account follows
                             expect(data[0].following_id).to.equal(fixture.USER_FELIZZ.id);
                             expect(data[0].followed_id).to.equal(user.id);
@@ -89,14 +88,13 @@ describe("Relation - Followed", function () {
                 };
 
                 request.post('/v1/relation/follow/act', followData,
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         logger.info(JSON.stringify(data));
                         request.get('/v1/relation/follow/followed/all?type=' + CONSTANTS.FOLLOW_TYPE.USER_FOLLOW_USER + '&object_id=' + user.id,
-                            function reqCallback(code, data) {
+                            function reqCallback(err, data) {
                                 logger.info(JSON.stringify(data));
-
-                                expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                                expect(err).to.be.a('null');
                                 expect(data.length).to.equal(1); // Felizz is the only user that is following this account
                                 expect(data[0].following_id).to.equal(user.id);
                                 expect(data[0].followed_id).to.equal(newUser.id);

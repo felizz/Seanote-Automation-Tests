@@ -6,7 +6,7 @@
 var expect = require('chai').expect;
 var request = require('../lib/request');
 var logger = require('../lib/logger');
-var returnCode = require('../lib/return-code');
+var apiErrors = require('../lib/api-errors');
 var testUtils = require('../lib/utils');
 var POST_TYPE = require('../lib/CONSTANTS.js').POST_TYPE;
 
@@ -20,8 +20,8 @@ var commentData = {
 
 var createPost = function (callback) {
     request.post('/v1/post/create', postData,
-        function reqCallback(code, data){
-            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+        function reqCallback(err, data){
+            expect(err).to.be.a('null');
             callback(data);
         }
     );
@@ -33,8 +33,8 @@ describe("Post - Create Post", function () {
     it("should enable logged in user to create post ", function (done) {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             request.post('/v1/post/create', postData,
-                function reqCallback(code, data){
-                    expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                function reqCallback(err, data){
+                    expect(err).to.be.a('null');
                     logger.info(JSON.stringify(data));
                     done();
                 }
@@ -61,8 +61,8 @@ describe("Post - Share Post", function () {
                         }
                     };
                     request.post('/v1/post/create', shareData.post,
-                        function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err).to.be.a('null');
                             //expect(data.shared_from).to.equal(shareData.post.shared_from);
 
                             logger.info(JSON.stringify(data));
@@ -82,8 +82,8 @@ describe("Post - Get Post", function () {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             createPost(function createPostCallback(act){
                 request.get('/v1/post/' + act.object.id,
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         expect(data.body).to.equal(postData.body);
                         logger.info(JSON.stringify(data));
                         done();
@@ -100,8 +100,8 @@ describe("Post - Get Post", function () {
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
                     request.get('/v1/post/' + act.object.id,
-                        function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err).to.be.a('null');
                             expect(data.body).to.equal(postData.body);
                             logger.info(JSON.stringify(data));
                             done();
@@ -122,14 +122,14 @@ describe("Post - Edit Post", function () {
             createPost(function createPostCallback(act){
 
                 request.post('/v1/post/' + act.object.id + '/update', updatePostData,
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         logger.info(JSON.stringify(data));
 
                         //Verify if the post is updated
                         request.get('/v1/post/' + act.object.id,
-                            function reqCallback(code, data){
-                                expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                            function reqCallback(err, data){
+                                expect(err).to.be.a('null');
                                 expect(data.body).to.equal(updatePostData.body);
                                 done();
                             }
@@ -147,8 +147,8 @@ describe("Post - Edit Post", function () {
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(user){
                     request.post('/v1/post/' + act.object.id + '/update', updatePostData,
-                        function reqCallback(code, data){
-                            expect(code).to.not.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err.error_name).to.equal(apiErrors.INTERNAL_SERVER_ERROR.new().error_name);
                             logger.info(JSON.stringify(data));
                             done();
                         }
@@ -167,8 +167,8 @@ describe("Post - Get All Question By User", function () {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             createPost(function createPostCallback(act){
                 request.get('/v1/post/all?type=0',
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         expect(data.length).to.equal(1); // This user have only one post, which was just created
                         logger.info(JSON.stringify(data));
                         done();
@@ -190,16 +190,16 @@ describe("Post - Voting", function () {
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             createPost(function createPostCallback(act){
                 request.post('/v1/post/' + act.object.id + '/vote', voteData,
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         logger.info(JSON.stringify(data));
 
                         //Clearing Vote
                         request.post('/v1/post/' + act.object.id + '/vote', {
                             action: "clear"
                         },
-                            function reqCallback(code, data){
-                                expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                            function reqCallback(err, data){
+                                expect(err).to.be.a('null');
                                 logger.info(JSON.stringify(data));
                                 done();
                             }
@@ -221,8 +221,8 @@ describe("Post - Voting", function () {
                 request.clearCookie();
                 testUtils.signupRandomUserThenLogIn(function callback(newUser){
                     request.post('/v1/post/' + act.object.id + '/vote', voteData,
-                        function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err).to.be.a('null');
                             logger.info(JSON.stringify(data));
                             done();
                         }
@@ -245,8 +245,8 @@ describe("Post - Create Comment", function () {
                     body: "Yeah, we rule the world!"
                 };
                 request.post('/v1/post/' + act.object.id + '/comment/create', commentData,
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         expect(data.body).to.equal(commentData.body);
                         logger.info(JSON.stringify(data));
                         done();
@@ -265,8 +265,8 @@ describe("Post - Create Comment", function () {
                 testUtils.signupRandomUserThenLogIn(function callback(user){
 
                     request.post('/v1/post/' + act.object.id + '/comment/create', commentData,
-                        function reqCallback(code, data){
-                            expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                        function reqCallback(err, data){
+                            expect(err).to.be.a('null');
                             expect(data.body).to.equal(commentData.body);
                             logger.info(JSON.stringify(data));
                             done();
@@ -287,11 +287,11 @@ describe("Post - Get Comments By Post", function () {
             createPost(function createPostCallback(act){
                 //Create Comment
                 request.post('/v1/post/' + act.object.id + '/comment/create', commentData,
-                    function reqCallback(code, data){
-                        expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                    function reqCallback(err, data){
+                        expect(err).to.be.a('null');
                         request.get('/v1/post/' + act.object.id + '/comment/all',
-                            function reqCallback(code, data){
-                                expect(code).to.equal(returnCode.REQUEST_SUCCESS.code);
+                            function reqCallback(err, data){
+                                expect(err).to.be.a('null');
                                 expect(data.length).to.equal(1);
                                 logger.info(JSON.stringify(data));
                                 done();
