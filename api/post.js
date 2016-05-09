@@ -8,7 +8,10 @@ var request = require('../lib/request');
 var logger = require('../lib/logger');
 var apiErrors = require('../lib/api-errors');
 var testUtils = require('../lib/utils');
-var POST_TYPE = require('../lib/CONSTANTS.js').POST_TYPE;
+var consts = require('../lib/CONSTANTS.js');
+
+var POST_TYPE = consts.POST_TYPE;
+var VOTE_ACTION = consts.VOTE_ACTION_MAP;
 
 var postData = {
     body: "Seanote Rule the world!",
@@ -63,6 +66,7 @@ describe("Post - Share Post", function () {
                     request.post('/v1/post/create', shareData.post,
                         function reqCallback(err, data){
                             expect(err).to.be.a('null');
+
                             //expect(data.shared_from).to.equal(shareData.post.shared_from);
 
                             logger.info(JSON.stringify(data));
@@ -185,7 +189,7 @@ describe("Post - Voting", function () {
     it("should enable logged in user to upvote his post and clear his vote ", function (done) {
 
         var voteData = {
-            action: "upvote"
+            action: VOTE_ACTION.upvote
         };
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             createPost(function createPostCallback(act){
@@ -196,7 +200,7 @@ describe("Post - Voting", function () {
 
                         //Clearing Vote
                         request.post('/v1/post/' + act.object.id + '/vote', {
-                            action: "clear"
+                            action: VOTE_ACTION.clear
                         },
                             function reqCallback(err, data){
                                 expect(err).to.be.a('null');
@@ -214,7 +218,7 @@ describe("Post - Voting", function () {
     it("should enable logged in user to downvote other user's post ", function (done) {
 
         var voteData = {
-            action: "downvote"
+            action: VOTE_ACTION.downvote
         };
         testUtils.signupRandomUserThenLogIn(function loginCallback(user){
             createPost(function createPostCallback(act){
